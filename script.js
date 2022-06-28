@@ -22,7 +22,10 @@ let colorCounter = 0;
 
 // Creates the grid and boxes
 let width = prompt("How many boxes would you like to be the width?");
-// let width = 32;
+if (width === null || isNaN(width)) {
+  width = 10;
+}
+
 const grid = document.querySelector(".grid");
 grid.style.gridTemplateColumns = `repeat(${width}, 1fr)`;
 
