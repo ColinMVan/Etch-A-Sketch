@@ -77,6 +77,11 @@ backgroundChanger.addEventListener("click", () => {
 
 const showOutlines = document.querySelector(".showOutlines");
 showOutlines.addEventListener("click", () => {
+  if (showOutlines.textContent === "Show Outlines") {
+    showOutlines.textContent = "Hide Outlines";
+  } else {
+    showOutlines.textContent = "Show Outlines";
+  }
   boxes.forEach((box) => {
     box.classList.toggle("outline");
   });
