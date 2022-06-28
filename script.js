@@ -21,7 +21,8 @@ let colorCounter = 0;
 // });
 
 // Creates the grid and boxes
-let width = 32;
+let width = prompt("How many boxes would you like to be the width?");
+// let width = 32;
 const grid = document.querySelector(".grid");
 grid.style.gridTemplateColumns = `repeat(${width}, 1fr)`;
 
@@ -72,4 +73,11 @@ changeColor.addEventListener("click", () => {
 const backgroundChanger = document.querySelector(".backgroundChanger");
 backgroundChanger.addEventListener("click", () => {
   grid.classList.toggle("black");
+});
+
+const showOutlines = document.querySelector(".showOutlines");
+showOutlines.addEventListener("click", () => {
+  boxes.forEach((box) => {
+    box.classList.toggle("outline");
+  });
 });

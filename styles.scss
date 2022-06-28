@@ -41,15 +41,24 @@ body {
     border: 3px solid black;
     font-size: 1rem;
     padding: 0.5em 1em;
-    transition: background-color 200ms ease-in;
+    transition: transform 200ms ease-in;
+    color: black;
 
     &:hover {
       cursor: pointer;
-      background-color: lightblue;
+      transform: scale(1.1);
     }
+  }
+
+  .gridSize {
+    background-color: hsl(0, 0%, 70%);
   }
 }
 
 .black {
   background-color: black;
+}
+
+.outline {
+  outline: 1px solid black;
 }
