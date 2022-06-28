@@ -43,7 +43,7 @@ boxes.forEach((box) => {
 const clear = document.querySelector(".clear");
 clear.addEventListener("click", () => {
   boxes.forEach((box) => {
-    box.style.backgroundColor = "white";
+    box.style.backgroundColor = "transparent";
   });
 });
 
