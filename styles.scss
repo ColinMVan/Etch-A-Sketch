@@ -3,3 +3,53 @@
   padding: 0;
   box-sizing: border-box;
 }
+
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 3rem;
+  height: 100vh;
+}
+
+.currentColor {
+  font-size: 1.3rem;
+  text-transform: capitalize;
+  font-weight: bold;
+}
+
+.grid {
+  display: grid;
+  outline: 5px solid black;
+  width: min(500px, 80%);
+
+  .grid-item {
+    aspect-ratio: 1;
+  }
+}
+
+.options {
+  display: flex;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+  gap: 1rem;
+  width: min(800px, 80%);
+
+  button {
+    background-color: transparent;
+    border: 3px solid black;
+    font-size: 1rem;
+    padding: 0.5em 1em;
+    transition: background-color 200ms ease-in;
+
+    &:hover {
+      cursor: pointer;
+      background-color: lightblue;
+    }
+  }
+}
+
+.black {
+  background-color: black;
+}
