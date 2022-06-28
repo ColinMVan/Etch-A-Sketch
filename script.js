@@ -1,3 +1,4 @@
+// Colors available to draw with
 const colors = [
   "red",
   "blue",
@@ -19,6 +20,7 @@ let colorCounter = 0;
 //   width = possWidths[widthCounter];
 // });
 
+// Creates the grid and boxes
 let width = 32;
 const grid = document.querySelector(".grid");
 grid.style.gridTemplateColumns = `repeat(${width}, 1fr)`;
@@ -37,19 +39,20 @@ boxes.forEach((box) => {
   });
 });
 
+// Clears the board of all colored blocks back to the selected background color
 const clear = document.querySelector(".clear");
-
 clear.addEventListener("click", () => {
   boxes.forEach((box) => {
     box.style.backgroundColor = "white";
   });
 });
 
-const changeColor = document.querySelector(".changeColor");
-
+// Changes the title of current color when the color is changed
 const currentColor = document.querySelector(".currentColor");
 currentColor.textContent = `Current Color: ${colors[colorCounter]}`;
 
+// Changes and displays the color selected when mousing over
+const changeColor = document.querySelector(".changeColor");
 changeColor.addEventListener("click", () => {
   if (colorCounter > colors.length - 2) {
     colorCounter = 0;
@@ -65,6 +68,7 @@ changeColor.addEventListener("click", () => {
   currentColor.textContent = `Current Color: ${colors[colorCounter]}`;
 });
 
+// Toggles the background color of the grid between black and white
 const backgroundChanger = document.querySelector(".backgroundChanger");
 backgroundChanger.addEventListener("click", () => {
   grid.classList.toggle("black");
