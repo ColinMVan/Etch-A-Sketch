@@ -1,17 +1,3 @@
-// Colors available to draw with
-const colors = [
-  "red",
-  "green",
-  "blue",
-  "purple",
-  "pink",
-  "orange",
-  "yellow",
-  "black",
-  "white",
-];
-let colorCounter = 0;
-
 createGrid(16);
 
 function changeSize(input) {
@@ -23,6 +9,8 @@ function changeSize(input) {
   }
 }
 
+let currentColor = "black";
+
 function createGrid(size) {
   const grid = document.querySelector(".grid");
   const boxes = document.querySelectorAll(".grid-item");
@@ -32,7 +20,7 @@ function createGrid(size) {
   for (let i = 0; i < size * size; i++) {
     let div = document.createElement("div");
     div.addEventListener("mouseover", () => {
-      div.style.backgroundColor = `${colors[colorCounter]}`;
+      div.style.backgroundColor = currentColor;
     });
     div.classList.add("grid-item");
     grid.appendChild(div);
@@ -49,36 +37,27 @@ function clearBoard() {
 const clear = document.querySelector(".clear");
 clear.addEventListener("click", clearBoard);
 
-// // Changes the title of current color when the color is changed
-const currentColor = document.querySelector(".currentColor");
-currentColor.textContent = `Current Color: ${colors[colorCounter]}`;
-
 // // Changes and displays the color selected
-function changesColor() {
+function changesColor(color) {
   const boxes = document.querySelectorAll(".grid-item");
-  if (colorCounter > colors.length - 2) {
-    colorCounter = 0;
-  } else {
-    colorCounter++;
-  }
   boxes.forEach((box) => {
     box.addEventListener("mouseover", () => {
-      box.style.backgroundColor = `${colors[colorCounter]}`;
+      box.style.backgroundColor = color;
     });
   });
-
-  currentColor.textContent = `Current Color: ${colors[colorCounter]}`;
+  currentColor = color;
 }
 
 const changeColor = document.querySelector(".changeColor");
 changeColor.addEventListener("click", changesColor);
 
 // // Toggles the background color of the grid between black and white
-function changeBackgroundColor() {
+function changeBackgroundColor(color) {
   const grid = document.querySelector(".grid");
   const boxes = document.querySelectorAll(".grid-item");
+  grid.style.backgroundColor = color;
+
   let gridStyle = window.getComputedStyle(grid);
-  grid.classList.toggle("black");
   if (showOutlines.textContent === "Hide Outlines") {
     boxes.forEach((box) => {
       if (
@@ -110,13 +89,7 @@ function showHideOutlines() {
     showOutlines.textContent = "Show Outlines";
   }
   boxes.forEach((box) => {
-    if (gridStyle.getPropertyValue("background-color") === "rgba(0, 0, 0, 0)") {
-      box.classList.remove("outlineWhite");
-      box.classList.toggle("outlineBlack");
-    } else {
-      box.classList.remove("outlineBlack");
-      box.classList.toggle("outlineWhite");
-    }
+    box.classList.toggle("outlineBlack");
   });
 }
 

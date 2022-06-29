@@ -11,6 +11,7 @@ body {
   flex-direction: column;
   gap: 3rem;
   min-height: 100vh;
+  margin-bottom: 1rem;
 }
 
 .title {
@@ -39,6 +40,28 @@ body {
   gap: 1rem;
   width: min(800px, 80%);
 }
+.options .row {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  font-family: Arial, Helvetica, sans-serif;
+  background-color: transparent;
+  border: 3px solid black;
+  padding: 0.5em 1em;
+}
+.options .row p {
+  color: black;
+  font-size: 1rem;
+}
+.options .row input {
+  border: none;
+  padding: 0;
+  transition: transform 200ms ease-in;
+}
+.options .row input:hover {
+  cursor: pointer;
+  transform: scale(1.1);
+}
 .options .changeColor {
   order: 1;
 }
@@ -61,6 +84,7 @@ body {
   padding: 0.5em;
   border: 3px solid black;
   order: 5;
+  text-align: center;
 }
 .options input:focus {
   outline: none;
