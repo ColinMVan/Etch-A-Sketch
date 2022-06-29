@@ -12,48 +12,50 @@ const colors = [
 ];
 let colorCounter = 0;
 
-// Creates the grid and boxes
-let width = prompt("How many boxes would you like to be the width?");
-if (width === null || isNaN(width)) {
-  width = 10;
+createGrid(16);
+
+function changeSize(input) {
+  if (input >= 2 && input <= 100) {
+    document.querySelector(".error").style.display = "none";
+    createGrid(input);
+  } else {
+    document.querySelector(".error").style.display = "block";
+  }
 }
 
-const grid = document.querySelector(".grid");
-createGrid();
+function createGrid(size) {
+  const grid = document.querySelector(".grid");
+  const boxes = document.querySelectorAll(".grid-item");
+  boxes.forEach((box) => box.remove());
+  grid.style.gridTemplateColumns = `repeat(${size}, 1fr)`;
 
-function createGrid() {
-  grid.style.gridTemplateColumns = `repeat(${width}, 1fr)`;
-
-  for (let i = 0; i < width * width; i++) {
+  for (let i = 0; i < size * size; i++) {
     let div = document.createElement("div");
+    div.addEventListener("mouseover", () => {
+      div.style.backgroundColor = `${colors[colorCounter]}`;
+    });
     div.classList.add("grid-item");
     grid.appendChild(div);
   }
 }
 
-const boxes = document.querySelectorAll(".grid-item");
-
-boxes.forEach((box) => {
-  box.addEventListener("mouseover", () => {
-    box.style.backgroundColor = `${colors[colorCounter]}`;
-  });
-});
-
 // Clears the board of all colored blocks back to the selected background color
-const clear = document.querySelector(".clear");
-clear.addEventListener("click", () => {
+function clearBoard() {
+  const boxes = document.querySelectorAll(".grid-item");
   boxes.forEach((box) => {
     box.style.backgroundColor = "transparent";
   });
-});
+}
+const clear = document.querySelector(".clear");
+clear.addEventListener("click", clearBoard);
 
-// Changes the title of current color when the color is changed
+// // Changes the title of current color when the color is changed
 const currentColor = document.querySelector(".currentColor");
 currentColor.textContent = `Current Color: ${colors[colorCounter]}`;
 
-// Changes and displays the color selected
-const changeColor = document.querySelector(".changeColor");
-changeColor.addEventListener("click", () => {
+// // Changes and displays the color selected
+function changesColor() {
+  const boxes = document.querySelectorAll(".grid-item");
   if (colorCounter > colors.length - 2) {
     colorCounter = 0;
   } else {
@@ -66,11 +68,16 @@ changeColor.addEventListener("click", () => {
   });
 
   currentColor.textContent = `Current Color: ${colors[colorCounter]}`;
-});
+}
 
-// Toggles the background color of the grid between black and white
-const backgroundChanger = document.querySelector(".backgroundChanger");
-backgroundChanger.addEventListener("click", () => {
+const changeColor = document.querySelector(".changeColor");
+changeColor.addEventListener("click", changesColor);
+
+// // Toggles the background color of the grid between black and white
+function changeBackgroundColor() {
+  const grid = document.querySelector(".grid");
+  const boxes = document.querySelectorAll(".grid-item");
+  let gridStyle = window.getComputedStyle(grid);
   grid.classList.toggle("black");
   if (showOutlines.textContent === "Hide Outlines") {
     boxes.forEach((box) => {
@@ -85,12 +92,18 @@ backgroundChanger.addEventListener("click", () => {
       }
     });
   }
-});
+}
 
-// Shows and hides outlines for grid items
+const backgroundChanger = document.querySelector(".backgroundChanger");
+backgroundChanger.addEventListener("click", changeBackgroundColor);
+
+// // Shows and hides outlines for grid items
 const showOutlines = document.querySelector(".showOutlines");
-let gridStyle = window.getComputedStyle(grid);
-showOutlines.addEventListener("click", () => {
+
+function showHideOutlines() {
+  const grid = document.querySelector(".grid");
+  const boxes = document.querySelectorAll(".grid-item");
+  let gridStyle = window.getComputedStyle(grid);
   if (showOutlines.textContent === "Show Outlines") {
     showOutlines.textContent = "Hide Outlines";
   } else {
@@ -105,13 +118,6 @@ showOutlines.addEventListener("click", () => {
       box.classList.toggle("outlineWhite");
     }
   });
-});
+}
 
-// const gridSizeChanger = document.querySelector(".gridSize");
-// gridSizeChanger.addEventListener("click", () => {
-//   boxes.forEach((box) => {
-//     box.remove();
-//   });
-//   width = 15;
-//   createGrid();
-// });
+showOutlines.addEventListener("click", showHideOutlines);

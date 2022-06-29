@@ -10,7 +10,12 @@ body {
   align-items: center;
   flex-direction: column;
   gap: 3rem;
-  height: 100vh;
+  min-height: 100vh;
+}
+
+.title {
+  font-size: 3rem;
+  text-align: center;
 }
 
 .currentColor {
@@ -29,11 +34,36 @@ body {
 }
 
 .options {
-  display: flex;
-  justify-content: space-evenly;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
   gap: 1rem;
   width: min(800px, 80%);
+}
+.options .changeColor {
+  order: 1;
+}
+.options .backgroundChanger {
+  order: 2;
+}
+.options .showOutlines {
+  order: 3;
+}
+.options .clear {
+  order: 4;
+}
+.options .gridSize {
+  order: 6;
+}
+.options .error {
+  order: 7;
+}
+.options input {
+  padding: 0.5em;
+  border: 3px solid black;
+  order: 5;
+}
+.options input:focus {
+  outline: none;
 }
 .options button {
   background-color: transparent;
@@ -58,4 +88,20 @@ body {
 
 .outlineWhite {
   outline: 1px solid white;
+}
+
+.error {
+  display: none;
+}
+
+@media (min-width: 800px) {
+  .options {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  .options input {
+    order: 4;
+  }
+  .options .clear {
+    order: 6;
+  }
 }/*# sourceMappingURL=styles.css.map */

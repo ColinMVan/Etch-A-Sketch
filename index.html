@@ -8,14 +8,22 @@
     <title>Etch-A-Sketch</title>
   </head>
   <body>
+    <h1 class="title">Etch-A-Sketch</h1>
     <p class="currentColor">Current Color:</p>
     <div class="grid"></div>
     <div class="options">
-      <button class="clear">Clear</button>
       <button class="changeColor">Change Color</button>
-      <!-- <button class="gridSize">Change Grid Size</button> -->
       <button class="backgroundChanger">Change Background</button>
       <button class="showOutlines">Show Outlines</button>
+      <input
+        type="text"
+        placeholder="Size of Board"
+        value="16"
+        onchange="changeSize(this.value)"
+      />
+      <button class="gridSize">Set Size</button>
+      <button class="clear">Clear</button>
+      <div class="error">Input must be between 2 and 100</div>
     </div>
     <script src="script.js"></script>
   </body>
