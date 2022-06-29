@@ -47,9 +47,6 @@ body {
   cursor: pointer;
   transform: scale(1.1);
 }
-.options .gridSize {
-  background-color: hsl(0deg, 0%, 70%);
-}
 
 .black {
   background-color: black;

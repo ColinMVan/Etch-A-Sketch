@@ -12,15 +12,6 @@ const colors = [
 ];
 let colorCounter = 0;
 
-// let widthCounter = 0;
-// const possWidths = [5, 10, 20, 30, 40];
-
-// const gridSizeChanger = document.querySelector(".gridSize");
-// gridSizeChanger.addEventListener("click", () => {
-//   widthCounter++;
-//   width = possWidths[widthCounter];
-// });
-
 // Creates the grid and boxes
 let width = prompt("How many boxes would you like to be the width?");
 if (width === null || isNaN(width)) {
@@ -28,12 +19,16 @@ if (width === null || isNaN(width)) {
 }
 
 const grid = document.querySelector(".grid");
-grid.style.gridTemplateColumns = `repeat(${width}, 1fr)`;
+createGrid();
 
-for (let i = 0; i < width * width; i++) {
-  let div = document.createElement("div");
-  div.classList.add("grid-item");
-  grid.appendChild(div);
+function createGrid() {
+  grid.style.gridTemplateColumns = `repeat(${width}, 1fr)`;
+
+  for (let i = 0; i < width * width; i++) {
+    let div = document.createElement("div");
+    div.classList.add("grid-item");
+    grid.appendChild(div);
+  }
 }
 
 const boxes = document.querySelectorAll(".grid-item");
@@ -109,5 +104,12 @@ showOutlines.addEventListener("click", () => {
       box.classList.remove("outlineBlack");
       box.classList.toggle("outlineWhite");
     }
+  });
+});
+
+const gridSizeChanger = document.querySelector(".gridSize");
+gridSizeChanger.addEventListener("click", () => {
+  boxes.forEach((box) => {
+    box.remove();
   });
 });
