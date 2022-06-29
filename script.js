@@ -76,9 +76,20 @@ changeColor.addEventListener("click", () => {
 const backgroundChanger = document.querySelector(".backgroundChanger");
 backgroundChanger.addEventListener("click", () => {
   grid.classList.toggle("black");
+  boxes.forEach((box) => {
+    if (gridStyle.getPropertyValue("background-color") === "rgba(0, 0, 0, 0)") {
+      box.classList.remove("outlineWhite");
+      box.classList.toggle("outlineBlack");
+    } else {
+      box.classList.remove("outlineBlack");
+      box.classList.toggle("outlineWhite");
+    }
+  });
 });
 
+// Shows and hides outlines for grid items
 const showOutlines = document.querySelector(".showOutlines");
+let gridStyle = window.getComputedStyle(grid);
 showOutlines.addEventListener("click", () => {
   if (showOutlines.textContent === "Show Outlines") {
     showOutlines.textContent = "Hide Outlines";
@@ -86,6 +97,12 @@ showOutlines.addEventListener("click", () => {
     showOutlines.textContent = "Show Outlines";
   }
   boxes.forEach((box) => {
-    box.classList.toggle("outline");
+    if (gridStyle.getPropertyValue("background-color") === "rgba(0, 0, 0, 0)") {
+      box.classList.remove("outlineWhite");
+      box.classList.toggle("outlineBlack");
+    } else {
+      box.classList.remove("outlineBlack");
+      box.classList.toggle("outlineWhite");
+    }
   });
 });

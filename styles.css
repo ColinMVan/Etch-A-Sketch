@@ -53,8 +53,13 @@ body {
 
 .black {
   background-color: black;
+  outline: 5px solid white;
 }
 
-.outline {
+.outlineBlack {
   outline: 1px solid black;
+}
+
+.outlineWhite {
+  outline: 1px solid white;
 }/*# sourceMappingURL=styles.css.map */
