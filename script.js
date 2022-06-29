@@ -107,9 +107,11 @@ showOutlines.addEventListener("click", () => {
   });
 });
 
-const gridSizeChanger = document.querySelector(".gridSize");
-gridSizeChanger.addEventListener("click", () => {
-  boxes.forEach((box) => {
-    box.remove();
-  });
-});
+// const gridSizeChanger = document.querySelector(".gridSize");
+// gridSizeChanger.addEventListener("click", () => {
+//   boxes.forEach((box) => {
+//     box.remove();
+//   });
+//   width = 15;
+//   createGrid();
+// });
