@@ -1,13 +1,14 @@
 // Colors available to draw with
 const colors = [
   "red",
-  "blue",
   "green",
+  "blue",
   "purple",
   "pink",
   "orange",
   "yellow",
-  "green",
+  "black",
+  "white",
 ];
 let colorCounter = 0;
 
@@ -55,7 +56,7 @@ clear.addEventListener("click", () => {
 const currentColor = document.querySelector(".currentColor");
 currentColor.textContent = `Current Color: ${colors[colorCounter]}`;
 
-// Changes and displays the color selected when mousing over
+// Changes and displays the color selected
 const changeColor = document.querySelector(".changeColor");
 changeColor.addEventListener("click", () => {
   if (colorCounter > colors.length - 2) {
@@ -76,15 +77,19 @@ changeColor.addEventListener("click", () => {
 const backgroundChanger = document.querySelector(".backgroundChanger");
 backgroundChanger.addEventListener("click", () => {
   grid.classList.toggle("black");
-  boxes.forEach((box) => {
-    if (gridStyle.getPropertyValue("background-color") === "rgba(0, 0, 0, 0)") {
-      box.classList.remove("outlineWhite");
-      box.classList.toggle("outlineBlack");
-    } else {
-      box.classList.remove("outlineBlack");
-      box.classList.toggle("outlineWhite");
-    }
-  });
+  if (showOutlines.textContent === "Hide Outlines") {
+    boxes.forEach((box) => {
+      if (
+        gridStyle.getPropertyValue("background-color") === "rgba(0, 0, 0, 0)"
+      ) {
+        box.classList.remove("outlineWhite");
+        box.classList.toggle("outlineBlack");
+      } else {
+        box.classList.remove("outlineBlack");
+        box.classList.toggle("outlineWhite");
+      }
+    });
+  }
 });
 
 // Shows and hides outlines for grid items
